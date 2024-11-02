@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人资料 - Yumesatmc</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="main">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="<%= user.avatar || '/images/default-avatar.png' %>" alt="头像">
+                    <button id="changeAvatarBtn" class="change-avatar-btn">更换头像</button>
+                </div>
+                <div class="profile-info">
+                    <h1><%= user.username %></h1>
+                    <p class="email"><%= user.email %></p>
+                    <p class="join-date">加入时间：<%= new Date(user.createdAt).toLocaleDateString() %></p>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-section">
+                    <h2>我的资源</h2>
+                    <div class="resource-stats">
+                        <div class="stat-item">
+                            <span class="stat-number"><%= userResources.length %></span>
+                            <span class="stat-label">已发布</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number"><%= totalDownloads %></span>
+                            <span class="stat-label">总下载</span>
+                        </div>
+                    </div>
+                    <div class="resource-list">
+                        <% userResources.forEach(resource => { %>
+                            <div class="resource-item">
+                                <img src="<%= resource.imageUrl %>" alt="<%= resource.title %>">
+                                <div class="resource-details">
+                                    <h3><%= resource.title %></h3>
+                                    <p class="resource-meta">
+                                        <span>下载：<%= resource.downloads %></span>
+                                        <span>状态：<%= resource.status %></span>
+                                    </p>
+                                </div>
+                                <div class="resource-actions">
+                                    <a href="/resources/<%= resource.id %>/edit" class="edit-btn">编辑</a>
+                                    <button class="delete-btn" data-id="<%= resource.id %>">删除</button>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2>账号设置</h2>
+                    <form id="profileForm" class="profile-form">
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" id="username" name="username" value="<%= user.username %>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentPassword">当前密码</label>
+                            <input type="password" id="currentPassword" name="currentPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">新密码</label>
+                            <input type="password" id="newPassword" name="newPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmNewPassword">确认新密码</label>
+                            <input type="password" id="confirmNewPassword" name="confirmNewPassword">
+                        </div>
+                        <button type="submit" class="save-btn">保存更改</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 头像上传模态窗口 -->
+    <div class="modal" id="avatarModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>更换头像</h2>
+            <form id="avatarForm">
+                <div class="avatar-upload">
+                    <input type="file" id="avatarInput" name="avatar" accept="image/*">
+                    <div id="avatarPreview"></div>
+                </div>
+                <button type="submit" class="submit-btn">上传头像</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+    <script src="/js/profile.js"></script>
+</body>
+</html> 

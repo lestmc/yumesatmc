@@ -1,0 +1,23 @@
+<header class="header">
+    <nav class="nav">
+        <div class="logo">Yumesatmc</div>
+        <ul class="nav-links">
+            <li><a href="/">首页</a></li>
+            <li><a href="/resources">资源</a></li>
+            <li><a href="/about">关于</a></li>
+            <% if (locals.user) { %>
+                <li class="user-menu">
+                    <a href="#" id="userMenuBtn"><%= user.username %> ▼</a>
+                    <div class="user-dropdown">
+                        <a href="/profile">个人资料</a>
+                        <a href="/my-resources">我的资源</a>
+                        <a href="#" id="logoutBtn">退出登录</a>
+                    </div>
+                </li>
+            <% } else { %>
+                <li><a href="#" id="registerBtn">注册</a></li>
+                <li><a href="#" id="loginBtn">登录</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header> 

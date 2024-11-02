@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理面板 - Yumesatmc</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="main">
+        <div class="admin-container">
+            <h1>资源审核</h1>
+            <div class="pending-resources">
+                <% pendingResources.forEach(resource => { %>
+                    <div class="resource-review-card">
+                        <div class="resource-preview">
+                            <img src="<%= resource.imageUrl %>" alt="<%= resource.title %>">
+                        </div>
+                        <div class="resource-info">
+                            <h3><%= resource.title %></h3>
+                            <p class="author">作者: <%= resource.authorName %></p>
+                            <p class="category">类型: <%= resource.category %></p>
+                            <p class="version">版本: <%= resource.version %></p>
+                            <p class="description"><%= resource.description %></p>
+                            <div class="review-actions">
+                                <textarea class="review-comment" placeholder="审核意见（可选）"></textarea>
+                                <div class="action-buttons">
+                                    <button class="approve-btn" data-id="<%= resource.id %>">通过</button>
+                                    <button class="reject-btn" data-id="<%= resource.id %>">拒绝</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+                <% if (pendingResources.length === 0) { %>
+                    <p class="no-pending">当前没有待审核的资源</p>
+                <% } %>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/admin.js"></script>
+</body>
+</html> 

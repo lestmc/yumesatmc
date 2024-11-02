@@ -1,0 +1,160 @@
+.resource-detail {
+    background: var(--dark-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.resource-header {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.resource-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.resource-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resource-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.resource-info h1 {
+    color: var(--light-purple);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.resource-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--gray-color);
+}
+
+.resource-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.download-btn,
+.edit-btn,
+.delete-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.download-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.download-btn:hover {
+    background: var(--hover-purple);
+}
+
+.edit-btn {
+    background: var(--gray-color);
+    color: white;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.resource-content {
+    padding: 2rem;
+}
+
+.description,
+.comments {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.description h2,
+.comments h2 {
+    color: var(--light-purple);
+    margin-bottom: 1rem;
+}
+
+.description-content {
+    line-height: 1.8;
+    color: #CBD5E0;
+}
+
+.comment-form {
+    margin-bottom: 2rem;
+}
+
+.comment-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
+    border: 1px solid var(--gray-color);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    margin-bottom: 1rem;
+    resize: vertical;
+}
+
+.comment-form button {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-prompt {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.login-prompt a {
+    color: var(--light-purple);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .resource-header {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-image {
+        height: 250px;
+    }
+
+    .resource-actions {
+        flex-direction: column;
+    }
+} 

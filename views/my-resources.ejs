@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的资源 - Yumesatmc</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/my-resources.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="main">
+        <div class="my-resources-container">
+            <div class="resources-header">
+                <h1>我的资源</h1>
+                <a href="/upload" class="upload-btn">
+                    <span class="upload-icon">+</span>
+                    上传新资源
+                </a>
+            </div>
+
+            <div class="resources-tabs">
+                <button class="tab-btn active" data-status="all">全部</button>
+                <button class="tab-btn" data-status="pending">待审核</button>
+                <button class="tab-btn" data-status="approved">已通过</button>
+                <button class="tab-btn" data-status="rejected">已拒绝</button>
+            </div>
+
+            <div class="resources-grid">
+                <% userResources.forEach(resource => { %>
+                    <div class="resource-card" data-status="<%= resource.status %>">
+                        <div class="resource-image">
+                            <img src="<%= resource.imageUrl %>" alt="<%= resource.title %>">
+                            <div class="resource-status <%= resource.status %>">
+                                <%= {
+                                    'pending': '审核中',
+                                    'approved': '已通过',
+                                    'rejected': '已拒绝'
+                                }[resource.status] %>
+                            </div>
+                        </div>
+                        <div class="resource-info">
+                            <h3><%= resource.title %></h3>
+                            <div class="resource-meta">
+                                <span>下载：<%= resource.downloads %></span>
+                                <span>版本：<%= resource.version %></span>
+                            </div>
+                            <% if (resource.reviewComment) { %>
+                                <div class="review-comment">
+                                    <strong>审核意见：</strong>
+                                    <p><%= resource.reviewComment %></p>
+                                </div>
+                            <% } %>
+                            <div class="resource-actions">
+                                <a href="/resources/<%= resource.id %>" class="view-btn">查看</a>
+                                <% if (resource.status === 'rejected') { %>
+                                    <button class="resubmit-btn" data-id="<%= resource.id %>">重新提交</button>
+                                <% } %>
+                                <button class="delete-btn" data-id="<%= resource.id %>">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+            <% if (userResources.length === 0) { %>
+                <div class="no-resources">
+                    <div class="empty-state">
+                        <div class="empty-icon">📦</div>
+                        <h2>还没有上传过资源</h2>
+                        <p>开始分享你的第一个资源吧！</p>
+                        <a href="/upload" class="upload-btn">上传资源</a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/my-resources.js"></script>
+</body>
+</html> 

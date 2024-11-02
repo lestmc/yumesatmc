@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源列表 - Yumesatmc</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/resources.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="main">
+        <div class="resources-header">
+            <h1>资源列表</h1>
+            <div class="resources-filters">
+                <select id="categoryFilter">
+                    <option value="">所有类型</option>
+                    <option value="地图">地图</option>
+                    <option value="材质包">材质包</option>
+                    <option value="模组">模组</option>
+                    <option value="数据包">数据包</option>
+                    <option value="光影">光影</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="newest">最新上传</option>
+                    <option value="downloads">下载最多</option>
+                    <option value="name">名称排序</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="搜索资源...">
+            </div>
+        </div>
+
+        <div class="resources-grid" id="resourcesContainer">
+            <!-- 资源将通过JavaScript动态加载 -->
+        </div>
+
+        <div class="pagination">
+            <button id="prevPage" disabled>上一页</button>
+            <span id="pageInfo">第 1 页</span>
+            <button id="nextPage">下一页</button>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/resources.js"></script>
+</body>
+</html> 

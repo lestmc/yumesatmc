@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animations.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Yumesatmc</div>
+            <ul class="nav-links">
+                <li><a href="/">首页</a></li>
+                <li><a href="/resources">资源</a></li>
+                <li><a href="/about">关于</a></li>
+                <% if (locals.user) { %>
+                    <li class="user-menu">
+                        <a href="#" id="userMenuBtn"><%= user.username %> ▼</a>
+                        <div class="user-dropdown">
+                            <a href="/profile">个人资料</a>
+                            <a href="/my-resources">我的资源</a>
+                            <a href="#" id="logoutBtn">退出登录</a>
+                        </div>
+                    </li>
+                <% } else { %>
+                    <li><a href="#" id="registerBtn">注册</a></li>
+                    <li><a href="#" id="loginBtn">登录</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="welcome-section fade-in">
+            <h1>欢迎来到 Yumesatmc</h1>
+            <p>分享和下载 Minecraft 资源</p>
+            <% if (locals.user) { %>
+                <a href="/upload" class="upload-btn bounce">
+                    <span class="upload-icon">+</span>
+                    上传资源
+                </a>
+            <% } else { %>
+                <a href="#" id="loginToUpload" class="upload-btn bounce">
+                    <span class="upload-icon">+</span>
+                    登录后上传
+                </a>
+            <% } %>
+        </div>
+
+        <div class="featured-section slide-in-up">
+            <h2>最新推荐</h2>
+            <div class="resource-windows" id="featuredResources">
+                <!-- 资源将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>注册账号</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">确认密码</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">注册</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>登录</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">邮箱</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">密码</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">登录</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Yumesatmc. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/modal.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html> 

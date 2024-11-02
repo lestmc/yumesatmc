@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传资源 - Yumesatmc</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/upload.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="main">
+        <div class="upload-container">
+            <h1>上传资源</h1>
+            <form id="uploadForm" class="upload-form">
+                <div class="form-group">
+                    <label for="title">资源标题</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">资源类型</label>
+                    <select id="category" name="category" required>
+                        <option value="">请选择类型</option>
+                        <option value="地图">地图</option>
+                        <option value="材质包">材质包</option>
+                        <option value="模组">模组</option>
+                        <option value="数据包">数据包</option>
+                        <option value="光影">光影</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="version">游戏版本</label>
+                    <input type="text" id="version" name="version" placeholder="例如: 1.20.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">资源描述</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">预览图片</label>
+                    <div class="file-upload">
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                        <div class="preview" id="imagePreview"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="file">资源文件</label>
+                    <div class="file-upload">
+                        <input type="file" id="file" name="file" required>
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
+                </div>
+
+                <div class="upload-progress" style="display: none;">
+                    <progress id="uploadProgress" value="0" max="100"></progress>
+                    <span id="progressText">准备上传...</span>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">上传资源</button>
+            </form>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/upload.js"></script>
+</body>
+</html> 

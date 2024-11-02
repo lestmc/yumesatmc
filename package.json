@@ -1,0 +1,33 @@
+{
+  "name": "yumesatmc",
+  "version": "1.0.0",
+  "description": "Minecraft resource download website",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "build": "npm run build:client && npm run build:functions",
+    "build:client": "mkdir -p public && cp -r views/* public/ && cp -r public/{css,js,images} .",
+    "build:functions": "netlify-lambda build functions --config webpack.functions.js --outDir functions-dist"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
+    "serverless-http": "^3.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^9.2.1",
+    "netlify-lambda": "^2.0.15",
+    "nodemon": "^2.0.22",
+    "webpack": "^5.96.1"
+  }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= resource.title %> - Yumesatmc</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/resource-detail.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="main">
+        <div class="resource-detail">
+            <div class="resource-header">
+                <div class="resource-image">
+                    <img src="<%= resource.imageUrl %>" alt="<%= resource.title %>">
+                </div>
+                <div class="resource-info">
+                    <h1><%= resource.title %></h1>
+                    <div class="resource-meta">
+                        <span class="author">作者: <%= resource.author.username %></span>
+                        <span class="category"><%= resource.category %></span>
+                        <span class="version">版本: <%= resource.version %></span>
+                        <span class="downloads">下载次数: <%= resource.downloads %></span>
+                        <span class="date">发布时间: <%= new Date(resource.createdAt).toLocaleDateString() %></span>
+                    </div>
+                    <div class="resource-actions">
+                        <a href="/api/resources/<%= resource._id %>/download" class="download-btn">下载资源</a>
+                        <% if (locals.user && resource.author._id.toString() === user._id.toString()) { %>
+                            <a href="/resources/<%= resource._id %>/edit" class="edit-btn">编辑</a>
+                            <button class="delete-btn" data-id="<%= resource._id %>">删除</button>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-content">
+                <div class="description">
+                    <h2>资源描述</h2>
+                    <div class="description-content">
+                        <%= resource.description %>
+                    </div>
+                </div>
+
+                <div class="comments">
+                    <h2>评论区</h2>
+                    <% if (locals.user) { %>
+                        <form id="commentForm" class="comment-form">
+                            <textarea name="content" placeholder="写下你的评论..." required></textarea>
+                            <button type="submit">发表评论</button>
+                        </form>
+                    <% } else { %>
+                        <p class="login-prompt">请<a href="#" id="loginBtn">登录</a>后发表评论</p>
+                    <% } %>
+                    <div class="comments-list">
+                        <!-- 评论将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/resource-detail.js"></script>
+</body>
+</html> 
