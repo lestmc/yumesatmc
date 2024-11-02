@@ -7,7 +7,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "build": "npm run build:client && npm run build:functions",
-    "build:client": "mkdir -p public && cp -r views/* public/ && cp -r public/{css,js,images} .",
+    "build:client": "mkdir -p public && cp -r views/* public/ && mkdir -p public/css public/js public/images && cp -r css/* public/css/ 2>/dev/null || : && cp -r js/* public/js/ 2>/dev/null || : && cp -r images/* public/images/ 2>/dev/null || :",
     "build:functions": "netlify-lambda build functions --config webpack.functions.js --outDir functions-dist"
   },
   "dependencies": {
